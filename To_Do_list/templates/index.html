@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+  <div style="text-align: center; background-color: cornflowerblue; padding: 10px;">
+    <h1 style="color: blanchedalmond;">To-Do List</h1>
+    <ul>
+        {% for task in tasks %}
+        <li style="text-decoration: none; color: aliceblue; font-family: Arial;">
+            <input type="checkbox" name = "done" {% if task[2] == 1 %}checked{% endif %}>
+            <span {% if task[2] == 1 %}style="text-decoration: line-through;"{% endif %}>            {{ task[1] }}
+            <a href="/complete_task/{{ task[0] }}" style="text-decoration: none; font-family: Arial; ">Complete</a>       
+         </li>
+        {% endfor %}
+    </ul>
+    <form action="/add_task" method="POST">
+        <input type="text" name="task_text" placeholder="Add a new task">
+        <button type="submit" style="color: white; background-color: blueviolet; border: none; border-radius: 4px ;">Add Task</button>
+    </form>
+  </div>
+</body>
+</html>
